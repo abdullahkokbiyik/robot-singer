@@ -9,7 +9,7 @@ option = input("Type the name of abc file listed below: \n"
                "sadi-moma-qon\n"
                "sarastro\n")
 
-call("abc2midi " + option + ".abc -o " + option + ".mid", shell=True)
+call("abc2midi example/" + option + ".abc -o " + option + ".mid", shell=True)
 call("perl ecantorix/ecantorix.pl -O mmp -o " + option + ".mmp " + option + ".mid", shell=True)
 call("lmms -o " + option + ".wav --render " + option + ".mmp", shell=True)
 call("find . -type f -regextype 'posix-egrep' -iregex '.*(_)[a-zA-Z0-9_]*\\.(wav)$' -delete", shell=True)

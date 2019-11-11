@@ -1,17 +1,8 @@
-T:La Belle Catherine. WM085
-M:2/4
-L:1/8
-Q:200
-C:*
-S:Wm.Mittell,1799
-R:*
-O:England
-A:Kent
-P:*
-N:DR.Nice versio
-D:*
-H:*
+X:1
+M:4/4
+L:1/4
+Q:90
 Z:C.G.P
-W:Change sides,back again,lead down the middle,up again,cast off Allemand
 K:D
-A|d2f/e/d/e/|fddc|B2e/f/e/d/|cAAA|]
+A|d2 f e d e|f d d c|B2 e f e d |c AAA
+w:Change sides,back again,lead down the middle,up again,cast off Allemand

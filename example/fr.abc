@@ -9,10 +9,23 @@ M:2/4
 L:1/8
 Q:1/4=110
 K:G
-D | G>A B B | A2 B B | G>A B B | [M:3/8] A2 B B G A |
-[M:2/4] B2 d2 | A A G A | A2 B2 | G4 ||
-W:Jean-Pierre de Provence se marie aujourd'hui (2x)
-W:Il prend femme si jeune qu'il ne peut s'en servir.
-W:Il est parti en guerre sept ans sans revenir.
-W:Au bout de la huitième il revient au pays /.../
+D |
+w:Jean
+G>A B B |
+w:Jean-Pierre de Provence
+A2 B B |
+w:Il prend femme si jeune
+G>A B B |
+w: qu'il ne peut s'en servir.
+[M:3/8] A2 B B G A |
+w:Jean-Pierre de Provence se marie aujourd'hui
+[M:2/4] B2 d2 |
+w:Il prend femme si jeune qu'il ne peut s'en servir.
+A A G A |
+w:Il est parti en guerre sept ans sans revenir.
+A2 B2 |
+w:Au bout de la huitième il revient
+G4 |
+w: au pays
+
 

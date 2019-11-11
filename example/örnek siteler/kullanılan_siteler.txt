@@ -2,3 +2,5 @@ https://ifdo.ca/~seymour/runabc/esac/kinder0.abc
 http://abc.sourceforge.net/abcMIDI/original/
 http://abcnotation.com/
 https://tunearch.org/wiki/Category:Tune
+http://fileformats.archiveteam.org/wiki/ABC_(musical_notation)
+http://abcnotation.com/wiki/abc:standard:v2.1#abc_fragment_definition
