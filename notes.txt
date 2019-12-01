@@ -1,0 +1,7 @@
+C D E E
+E F E D
+D E F F G F E
+G F E E
+E F G E
+G F E E D C B2
+
