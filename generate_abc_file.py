@@ -1,21 +1,58 @@
 from turkishnlp.detector import TurkishNLP as nlp
+import random
 
 
 def generate_abc_file(file_name):
-    lyrics = open("lyrics.txt", "r")
-    notes = open("notes.txt", "r")
+
+    # Random number for selecting a category for our poem
+    input_name = random.randrange(1, 4)
+    category_file_name = "example/lyrics/category_" + str(input_name) + ".txt"
+    # Open relevant category file
+    lyrics = open(category_file_name, "r")
+
+    # Pull all poems inside of category file
+    poems = lyrics.read().split("<s>")
+    # Select random poem
+    poem = poems[random.randrange(0, len(poems))].lstrip("\n")
+    # Write selected poem to file
+    selected_poem = open("example/lyrics.txt", "w")
+    selected_poem.write(poem)
+    selected_poem.close()
+    lyrics.close()
+
+    # Read notes file. This file includes all possible notes (not exactly all btw). We will choose randomly between them
+    notes = open("example/notes/notes.txt", "r")
+    # Append notes to a list
+    notes_list = notes.read().rstrip("\n").split(" ")
+    notes.close()
+
+    # Conf file
     conf = open("example/"+file_name+".conf", "w")
+    conf.write("$ESPEAK_VOICE = \"tr\";\n"
+               "$ESPEAK_TRANSPOSE = -15;\n"
+               "do '../ecantorix/examples/extravoices/melt.inc;'\n")
+    conf.close()
+
+    # Open output file. This file is .abc file
     outfile = open("example/"+file_name+".abc", "w")
     outfile.write("X:0\nM:4/4\nL:1/4\nQ:120\nK:C\nV:1\n")
-    line = lyrics.readline()
+
+    # Open file which included our selected poem
+    selected_poem = open("example/lyrics.txt", "r")
+    line = selected_poem.readline()
+
+    # Init model
     obj = nlp()
-    #obj.download()
+    # obj.download()
     obj.create_word_set()
+
     while line:
-        note_line = notes.readline()
-        outfile.write(note_line.rstrip("\n") + "|" + "\nw:")
         line_stripped = line.rstrip("\n")
         syllabicated = obj.syllabicate_sentence(line_stripped)
+        line_len = sum(len(x) for x in syllabicated)
+        for i in range(line_len):
+            outfile.write(notes_list[random.randrange(0, len(notes_list))] + " ")
+        outfile.write("|\nw:")
         for list_word in syllabicated:
             for word_index in range(len(list_word)):
                 if len(list_word) == 1:
@@ -27,12 +64,7 @@ def generate_abc_file(file_name):
                     else:
                         outfile.write(" ")
         outfile.write("\n")
-        line = lyrics.readline()
+        line = selected_poem.readline()
 
-    conf.write("$ESPEAK_VOICE = \"tr\";\n"
-               "$ESPEAK_TRANSPOSE = -15;\n"
-               "do '../ecantorix/examples/extravoices/melt.inc;'\n")
-    conf.close()
-    notes.close()
+    selected_poem.close()
     outfile.close()
-    lyrics.close()
