@@ -35,7 +35,12 @@ def generate_abc_file(file_name):
 
     # Open output file. This file is .abc file
     outfile = open("example/"+file_name+".abc", "w")
-    outfile.write("X:0\nM:4/4\nL:1/4\nQ:120\nK:C\nV:1\n")
+    outfile.write("X:0\n"
+                  "M:4/4\n"
+                  "L:1/4\n"
+                  "Q:120\n"
+                  "K:C\n"
+                  "V:1\n")
 
     # Open file which included our selected poem
     selected_poem = open("example/lyrics.txt", "r")
@@ -51,7 +56,10 @@ def generate_abc_file(file_name):
         syllabicated = obj.syllabicate_sentence(line_stripped)
         line_len = sum(len(x) for x in syllabicated)
         for i in range(line_len):
-            outfile.write(notes_list[random.randrange(0, len(notes_list))] + " ")
+            if i != line_len:
+                outfile.write(notes_list[random.randrange(0, len(notes_list))] + " ")
+            else:
+                outfile.write(notes_list[random.randrange(0, len(notes_list))])
         outfile.write("|\nw:")
         for list_word in syllabicated:
             for word_index in range(len(list_word)):
