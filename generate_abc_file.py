@@ -1,5 +1,6 @@
 from turkishnlp.detector import TurkishNLP as nlp
 import random
+import sys
 
 
 def generate_abc_file(file_name):
@@ -76,3 +77,5 @@ def generate_abc_file(file_name):
 
     selected_poem.close()
     outfile.close()
+
+generate_abc_file(sys.argv[1])
