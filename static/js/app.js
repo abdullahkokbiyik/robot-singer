@@ -1,7 +1,18 @@
 
+function randomName()
+{
+    var anysize = 32;//the size of string 
+    var charset = "abcdefghijklmnopqrstuvwxyz"; //from where to create
+    var i=0, ret='';
+    while(i++<anysize)
+        ret += charset.charAt(Math.random() * charset.length)
+    return ret;
+}
+
 function quickGeneration()
 {
-    var json = JSON.stringify({"file_name": "test", "lyric": "None"});
+    var file_name = randomName();
+    var json = JSON.stringify({"file_name": file_name, "lyric": "None"});
     document.getElementById("loader").style.display = "block";
     $.ajax({
         type: "POST",
@@ -17,7 +28,7 @@ function quickGeneration()
                 'success'
             );
             document.getElementById('mp3-player').innerHTML = "";
-            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/a.wav" type="audio/wav"></audio><p>Click the play button</p>';
+            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/'+file_name+'.wav" type="audio/wav"></audio><p>Click the play button</p>';
     });
 }
 
@@ -33,7 +44,8 @@ function generateWithLyrics()
         return;
     }
     var input = document.getElementById("txt").value;
-    var json = JSON.stringify({"file_name": "test", "lyric": input});
+    var file_name = randomName();
+    var json = JSON.stringify({"file_name": file_name, "lyric": input});
     document.getElementById("loader").style.display = "block";
     $.ajax({
         type: "POST",
@@ -49,6 +61,6 @@ function generateWithLyrics()
                 'success'
             );
             document.getElementById('mp3-player').innerHTML = "";
-            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/a.wav" type="audio/wav"></audio><p>Click the play button</p>';
+            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/'+file_name+'.wav" type="audio/wav"></audio><p>Click the play button</p>';
     });
 }

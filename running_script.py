@@ -17,6 +17,7 @@ def index():
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
 
+    os.system("rm -r static/generation/*")
     data = request.get_data()
     data = json.loads(data)
     file_name = data['file_name']
@@ -97,7 +98,7 @@ def generate():
 
     selected_poem.close()
     outfile.close()
-    os.system("cd ecantorix && make ../static/generation/test.wav")
+    os.system("cd ecantorix && make ../static/generation/"+file_name+".wav")
     return "200"
 
 
