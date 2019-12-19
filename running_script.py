@@ -1,8 +1,9 @@
 import os
 from turkishnlp.detector import TurkishNLP as nlp
 import random
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, request
 from flask_cors import CORS
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -13,24 +14,32 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/generate/<file_name>', methods=['POST', 'GET'])
-def generate(file_name):
+@app.route('/generate', methods=['POST', 'GET'])
+def generate():
 
-    # Random number for selecting a category for our poem
-    input_name = random.randrange(1, 4)
-    category_file_name = "example/lyrics/category_" + str(input_name) + ".txt"
-    # Open relevant category file
-    lyrics = open(category_file_name, "r")
+    data = request.get_data()
+    data = json.loads(data)
+    file_name = data['file_name']
+    lyric = data['lyric']
+    poem = ""
+    if lyric == "None":
+        # Random number for selecting a category for our poem
+        input_name = random.randrange(1, 4)
+        category_file_name = "example/lyrics/category_" + str(input_name) + ".txt"
+        # Open relevant category file
+        lyrics = open(category_file_name, "r")
 
-    # Pull all poems inside of category file
-    poems = lyrics.read().split("<s>")
-    # Select random poem
-    poem = poems[random.randrange(0, len(poems))].lstrip("\n")
+        # Pull all poems inside of category file
+        poems = lyrics.read().split("<s>")
+        # Select random poem
+        poem = poems[random.randrange(0, len(poems))].lstrip("\n")
+        lyrics.close()
+    else:
+        poem = lyric.lstrip("\n")
     # Write selected poem to file
     selected_poem = open("static/generation/lyrics.txt", "w")
     selected_poem.write(poem)
     selected_poem.close()
-    lyrics.close()
 
     # Read notes file. This file includes all possible notes (not exactly all btw). We will choose randomly between them
     notes = open("example/notes/notes.txt", "r")

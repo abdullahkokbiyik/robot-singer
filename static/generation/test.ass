@@ -16,21 +16,5 @@ Style: Karaoke,Arial,28,&H00FF0000,&H00FFFF00,&H00FFFFFF,&H80000000,-1,0,0,0,100
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:59.51,0:00:04.00,Karaoke,eCantorix,0000,0000,0000,,{\k150}{\kf50}düş{\kf50}tün{\k0} {\kf50}fe{\kf50}le{\kf50}ğin{\k0} {\kf50}çar{\kf50}kı{\kf50}na
-Dialogue: 0,0:00:04.00,0:00:08.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}sen{\kf50}de{\k0} {\kf50}var{\kf50}ma{\kf50}dın{\k0} {\kf50}far{\kf50}kı{\kf50}na
-Dialogue: 0,0:00:08.00,0:00:12.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}dol{\kf50}dun{\k0} {\kf50}gö{\kf50}nül{\kf50}ler{\k0} {\kf50}ar{\kf50}kı{\kf50}na
-Dialogue: 0,0:00:12.00,0:00:16.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}yan{\kf50}dın{\k0} {\kf50}ka{\kf50}za{\kf50}nın{\k0} {\kf50}na{\kf50}rın{\kf50}da
-Dialogue: 0,0:00:16.00,0:00:20.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}tür{\kf50}ki{\kf50}ye{\k0} {\kf50}nin{\k0} {\kf50}her{\k0} {\kf50}ye{\kf50}rin{\kf50}de
-Dialogue: 0,0:00:20.00,0:00:24.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}se{\kf50}ven{\kf50}le{\kf50}rin{\k0} {\kf50}ağ{\kf50}lar{\k0} {\kf50}ol{\kf50}du
-Dialogue: 0,0:00:24.00,0:00:28.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}göz{\kf50}le{\kf50}ri{\k0} {\kf50}yaş{\k0} {\kf50}i{\kf50}le{\k0} {\kf50}dol{\kf50}du
-Dialogue: 0,0:00:28.00,0:00:32.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}u{\kf50}zak{\kf50}tan{\k0} {\kf50}bir{\k0} {\kf50}ses{\k0} {\kf50}du{\kf50}yul{\kf50}du
-Dialogue: 0,0:00:32.00,0:00:36.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}ka{\kf50}ra{\kf50}ca{\k0} {\kf50}oğ{\kf50}lan{\k0} {\kf50}se{\kf50}nin{\kf50}di
-Dialogue: 0,0:00:36.00,0:00:40.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}cem{\k0} {\kf50}ka{\kf50}ra{\kf50}ca{\k0} {\kf50}ör{\kf50}ne{\kf50}ğin{\kf50}di
-Dialogue: 0,0:00:40.00,0:00:44.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}se{\kf50}ni{\k0} {\kf50}ça{\kf50}ğır{\kf50}dı{\kf50}lar{\k0} {\kf50}şim{\kf50}di
-Dialogue: 0,0:00:44.00,0:00:48.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}ga{\kf50}rip{\k0} {\kf50}yu{\kf50}suf{\k0} {\kf50}ça{\kf50}ğı{\kf50}rı{\kf50}yor
-Dialogue: 0,0:00:48.00,0:00:52.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}bak{\k0} {\kf50}tür{\kf50}kü{\kf50}le{\kf50}rin{\k0} {\kf50}ağ{\kf50}lı{\kf50}yor
-Dialogue: 0,0:00:52.00,0:00:56.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}sus{\kf50}kun{\k0} {\kf50}gi{\kf50}ta{\kf50}rın{\k0} {\kf50}çağ{\kf50}lı{\kf50}yor
-Dialogue: 0,0:00:56.00,0:01:03.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}pı{\kf50}rıl{\k0} {\kf50}pı{\kf50}rıl{\k0} {\kf50}bir{\k0} {\kf50}gü{\kf50}neş{\k0} {\kf50}do{\kf50}ğun{\kf50}ca{\k0} {\kf50}mut{\kf50}lu{\kf50}luk{\kf50}la
-Dialogue: 0,0:01:03.00,0:01:10.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}ba{\kf50}rış{\k0} {\kf50}ve{\k0} {\kf50}sev{\kf50}gi{\kf50}le{\kf50}ri{\k0} {\kf50}aç{\k0} {\kf50}ko{\kf50}lu{\kf50}nu{\k0} {\kf50}ku{\kf50}cak{\kf50}la
-Dialogue: 0,0:01:10.00,0:01:17.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}gün{\kf50}ler{\k0} {\kf50}ge{\kf50}çip{\k0} {\kf50}gi{\kf50}der{\kf50}ken{\k0} {\kf50}hu{\kf50}zur{\kf50}lu{\k0} {\kf50}ya{\kf50}şa{\kf50}mak{\kf50}la
-Dialogue: 0,0:01:17.00,0:01:24.50,Karaoke,eCantorix,0000,0000,0000,,{\kf50}gü{\kf50}nay{\kf50}dın{\k0} {\kf50}ey{\k0} {\kf50}in{\kf50}san{\kf50}lar{\k0} {\kf50}gü{\kf50}nay{\kf50}dın{\k0} {\kf50}ol{\kf50}sun{\k0} {\kf50}si{\kf50}ze
+Dialogue: 0,0:00:59.51,0:00:03.00,Karaoke,eCantorix,0000,0000,0000,,{\k150}{\kf50}a{\kf50}nan{\kf50}da{\k0} {\kf50}am{\k0} {\kf50}var{\k0} {\kf50}mı
+Dialogue: 0,0:00:03.00,0:00:07.00,Karaoke,eCantorix,0000,0000,0000,,{\kf50}o{\k0} {\kf50}gö{\kf50}te{\k0} {\kf50}bül{\kf50}bül{\k0} {\kf50}ö{\kf50}te
