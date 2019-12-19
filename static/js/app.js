@@ -11,3 +11,6 @@ function quickGeneration()
             document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/test.wav" type="audio/wav"></audio><p>Click the play button</p>';
     });
 }
+function showtext(){
+     document.getElementById('txtarea').style.display = 'block';
+}
