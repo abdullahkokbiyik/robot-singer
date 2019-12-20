@@ -11,6 +11,7 @@ textarea
 {
     resize: none;
     margin-bottom: 10px;
+    border: 1px solid #8b2f97 !important;
 }
 
 #txtarea
@@ -44,10 +45,10 @@ textarea
     height: 150px;
     border: 16px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 16px solid blue;
-    border-right: 16px solid green;
-    border-bottom: 16px solid red;
-    border-left: 16px solid pink;
+    border-top: 16px solid #e1b1e7;
+    border-right: 16px solid #8b2f97;
+    border-bottom: 16px solid #6c2475;
+    border-left: 16px solid #36123b;
     width: 120px;
     height: 120px;
     -webkit-animation: spin 2s linear infinite;
@@ -93,6 +94,47 @@ textarea
   #lyrics-section
   {
     display: none;
-    border: 1px solid purple;
+    border: 1px solid #8b2f97;;
     padding: 15px;
+  }
+
+  #footer-section
+  {
+    background-color: #8b2f97;
+  }
+
+  #header-section
+  {
+    background-color: #8b2f97 !important;
+  }
+
+  .btn-outline-purple
+  {
+    color:#8b2f97;
+    border-color:#8b2f97;
+  }
+
+  .btn-outline-purple:hover
+  {
+    color: white;
+    background-color: #8b2f97;
+  }
+
+  .btn-purple
+  {
+    background-color: #8b2f97;
+    border-color: #8b2f97;
+    color: white;
+  }
+
+  .btn-purple:hover
+  {
+    background-color: white;
+    color: #8b2f97;
+  }
+
+  .clear 
+  { 
+    clear: both;
+    height: 200px; 
   }

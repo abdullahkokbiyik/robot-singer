@@ -13,7 +13,8 @@ function quickGeneration()
 {
     var file_name = randomName();
     var json = JSON.stringify({"file_name": file_name, "lyric": "None"});
-    document.getElementById('txtarea').innerHTML = "";
+    document.getElementById("lyrics-section").style.display = 'hidden';
+    document.getElementById('txt').value = "";
     document.getElementById('txtarea').style.display = 'none';
     document.getElementsByClassName("container-fluid")[0].style.filter = "blur(8px)";
     document.getElementById("loading-section").style.display = "block";
@@ -31,11 +32,10 @@ function quickGeneration()
                 'success'
             );
             document.getElementById("lyrics-section").style.display = 'block';
-            var responseLyrics = response.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br>');
-            document.getElementById("lyrics-section").innerHTML = "Sözler:<br>" + responseLyrics;
+            document.getElementById("lyrics-section").value = "Sözler:\n" + response.lyrics;
             document.getElementsByClassName("container-fluid")[0].style.filter = "blur(0px)";
             document.getElementById('mp3-player').innerHTML = "";
-            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/'+file_name+'.wav" type="audio/wav"></audio><p>Click the play button</p>';
+            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/'+file_name+'.wav" type="audio/wav"></audio>';
         },
         error: function () {
             Swal.fire(
@@ -48,7 +48,12 @@ function quickGeneration()
 }
 
 function showtext(){
-     document.getElementById('txtarea').style.display = 'block';
+    document.getElementById('txtarea').style.display = 'block';
+}
+
+function hideText()
+{
+    document.getElementById('txtarea').style.display = 'none';
 }
 
 function generateWithLyrics()
@@ -58,10 +63,11 @@ function generateWithLyrics()
         Swal.fire('Başarısız!', 'Lütfen sözleri yazın.', 'error');
         return;
     }
+    document.getElementById("lyrics-section").style.display = 'hidden';
     var input = document.getElementById("txt").value;
     var file_name = randomName();
     var json = JSON.stringify({"file_name": file_name, "lyric": input});
-    document.getElementById('txtarea').innerHTML = "";
+    document.getElementById('txt').value = "";
     document.getElementById('txtarea').style.display = 'none';
     document.getElementsByClassName("container-fluid")[0].style.filter = "blur(8px)";
     document.getElementById("loading-section").style.display = "block";
@@ -79,11 +85,10 @@ function generateWithLyrics()
                 'success'
             );
             document.getElementById("lyrics-section").style.display = 'block';
-            var responseLyrics = response.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br>');
-            document.getElementById("lyrics-section").innerHTML = "Sözler:<br>" + responseLyrics;
+            document.getElementById("lyrics-section").value = "Sözler:\n" + response.lyrics;
             document.getElementsByClassName("container-fluid")[0].style.filter = "blur(0px)";
             document.getElementById('mp3-player').innerHTML = "";
-            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/'+file_name+'.wav" type="audio/wav"></audio><p>Click the play button</p>';
+            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/'+file_name+'.wav" type="audio/wav"></audio>';
         },
         error: function () {
             Swal.fire(
