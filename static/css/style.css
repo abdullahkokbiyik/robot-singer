@@ -31,8 +31,12 @@ textarea
     margin-bottom: 10px;
 }
 
+#loading-section
+{
+  display: none;
+}
+
 #loader {
-    display: none;
     position: relative;
     z-index: 1;
     top: 50%;
@@ -87,3 +91,9 @@ textarea
     to{ bottom:0; opacity:1 }
   }
   
+  #lyrics-section
+  {
+    display: none;
+    border: 1px solid purple;
+    padding: 15px;
+  }
