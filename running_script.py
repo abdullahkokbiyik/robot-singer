@@ -99,7 +99,8 @@ def generate():
     selected_poem.close()
     outfile.close()
     os.system("cd ecantorix && make ../static/generation/"+file_name+".wav")
-    return "200"
+    response = {"status_code": "200", "lyrics": poem}
+    return json.dumps(response)
 
 
 if __name__ == "__main__":
