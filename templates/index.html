@@ -30,7 +30,8 @@
             </a>
         </nav>
     </div>
-    <div class="container-fluid">
+    <div class="imageContainer"></div>
+    <div class="container-fluid" id="body">
         <div class="container-div row">
             <div class="col-12 col-md-6" id="quickGenDiv">
                 <button type="button" onclick="quickGeneration()" class="btn btn-outline-purple" id="quickGenerationButton">Hızlı Oluştur</button>
@@ -42,8 +43,8 @@
         <div class="container-div row">
             <div id="txtarea" class="md-form col-12" style="display: none;">
                 <textarea id="txt" class="md-textarea form-control col-12" rows="10" placeholder="Sözleri yazın."></textarea>
-                <button type="button" class="btn btn-purple float-right" onclick="generateWithLyrics()">Hazırla</button>
-                <button type="button" class="btn btn-purple float-left" onclick="hideText()">Gizle</button>
+                <button type="button" class="btn btn-outline-purple float-right" onclick="generateWithLyrics()">Hazırla</button>
+                <button type="button" class="btn btn-outline-purple float-left" onclick="hideText()">Gizle</button>
             </div>
         </div>
 
@@ -54,7 +55,7 @@
     </div>
     <div class="col-12 offset-md-5 text-center" id="loading-section">
         <div id="loader"></div>
-        <span style="color: #8b2f97; font-size: large; margin-top: 10px;">Lütfen Bekleyin.<br> Sözlerin uzunluğuna göre besteleme süresi uzayabilir.</span>
+        <span style="color: whitesmoke; font-size: large; margin-top: 10px; font-weight: bold;">Lütfen Bekleyin.<br> Sözlerin uzunluğuna göre besteleme süresi uzayabilir.</span>
     </div>
     <div class="clear"></div>
     <div class="page-footer font-small fixed-bottom" id="footer-section">

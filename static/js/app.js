@@ -13,7 +13,7 @@ function quickGeneration()
 {
     var file_name = randomName();
     var json = JSON.stringify({"file_name": file_name, "lyric": "None"});
-    document.getElementById("lyrics-section").style.display = 'hidden';
+    document.getElementById("lyrics-section").style.display = 'none';
     document.getElementById('txt').value = "";
     document.getElementById('txtarea').style.display = 'none';
     document.getElementsByClassName("container-fluid")[0].style.filter = "blur(8px)";
