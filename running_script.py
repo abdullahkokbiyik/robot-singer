@@ -22,6 +22,7 @@ def generate():
     data = json.loads(data)
     file_name = data['file_name']
     lyric = data['lyric']
+    transpose = data['transpose']
     poem = ""
     if lyric == "None":
         # Random number for selecting a category for our poem
@@ -51,7 +52,7 @@ def generate():
     # Conf file
     conf = open("static/generation/"+file_name+".conf", "w")
     conf.write("$ESPEAK_VOICE = \"tr\";\n"
-               "$ESPEAK_TRANSPOSE = -15;\n"
+               "$ESPEAK_TRANSPOSE = " + transpose + ";\n"
                "do '../ecantorix/examples/extravoices/melt.inc;'\n")
     conf.close()
 

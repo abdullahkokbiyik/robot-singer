@@ -12,7 +12,8 @@ function randomName()
 function quickGeneration()
 {
     var file_name = randomName();
-    var json = JSON.stringify({"file_name": file_name, "lyric": "None"});
+    var transpose = $('#transpose-area input:radio:checked').val();
+    var json = JSON.stringify({"file_name": file_name, "lyric": "None", "transpose": transpose});
     document.getElementById("lyrics-section").style.display = 'none';
     document.getElementById('txt').value = "";
     document.getElementById('txtarea').style.display = 'none';
@@ -47,7 +48,9 @@ function quickGeneration()
     });
 }
 
-function showtext(){
+function showtext()
+{
+    document.getElementById('mp3-player').innerHTML = "";
     document.getElementById('txtarea').style.display = 'block';
 }
 
@@ -63,10 +66,12 @@ function generateWithLyrics()
         Swal.fire('Başarısız!', 'Lütfen sözleri yazın.', 'error');
         return;
     }
-    document.getElementById("lyrics-section").style.display = 'hidden';
+    document.getElementById("lyrics-section").style.display = 'none';
+    document.getElementById('mp3-player').innerHTML = "";
     var input = document.getElementById("txt").value;
     var file_name = randomName();
-    var json = JSON.stringify({"file_name": file_name, "lyric": input});
+    var transpose = $('#transpose-area input:radio:checked').val();
+    var json = JSON.stringify({"file_name": file_name, "lyric": input, "transpose": transpose});
     document.getElementById('txt').value = "";
     document.getElementById('txtarea').style.display = 'none';
     document.getElementsByClassName("container-fluid")[0].style.filter = "blur(8px)";
@@ -87,7 +92,6 @@ function generateWithLyrics()
             document.getElementById("lyrics-section").style.display = 'block';
             document.getElementById("lyrics-section").value = "Sözler:\n" + response.lyrics;
             document.getElementsByClassName("container-fluid")[0].style.filter = "blur(0px)";
-            document.getElementById('mp3-player').innerHTML = "";
             document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/'+file_name+'.wav" type="audio/wav"></audio>';
         },
         error: function () {

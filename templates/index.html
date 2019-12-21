@@ -22,7 +22,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="header">
+    <div class="header fixed-top">
         <nav class="navbar navbar-expand-md navbar-light bg-light" id="header-section">
             <a href="#" class="navbar-brand col-12 offset-md-4 offset-lg-5">
                 <img src="static/images/robot.gif" height="75px" width="75px" />
@@ -32,6 +32,7 @@
     </div>
     <div class="imageContainer"></div>
     <div class="container-fluid" id="body">
+        <div class="clear-top"></div>
         <div class="container-div row">
             <div class="col-12 col-md-6" id="quickGenDiv">
                 <button type="button" onclick="quickGeneration()" class="btn btn-outline-purple" id="quickGenerationButton">Hızlı Oluştur</button>
@@ -40,7 +41,20 @@
                 <button type="button" onclick="showtext()" class="btn btn-outline-purple" id="showTextButton">Benim Sözlerimle Oluştur</button>
             </div>
         </div>
-        <div class="container-div row">
+        <div class="container-div text-center">
+            <span style="font-weight: bold; color: whitesmoke; font-size: large; z-index: 0;">Lütfen önce ses kalınlığını seçiniz:</span>
+            <div class="btn-group container col-12 col-md-4 offset-md-4" id="transpose-area" data-toggle="buttons">
+                <label class="btn btn-default blue" style="color: whitesmoke;">
+                  <input type="radio" class="toggle" value="-7" name="transpose">İnce
+                </label>
+                <label class="btn btn-default blue" style="color: whitesmoke;">
+                  <input type="radio" class="toggle" value="-15" name="transpose" checked> Normal
+                </label>
+                <label class="btn btn-default blue" style="color: whitesmoke;">
+                  <input type="radio" class="toggle" value="-23" name="transpose"> Kalın
+                </label>
+            </div>
+                
             <div id="txtarea" class="md-form col-12" style="display: none;">
                 <textarea id="txt" class="md-textarea form-control col-12" rows="10" placeholder="Sözleri yazın."></textarea>
                 <button type="button" class="btn btn-outline-purple float-right" onclick="generateWithLyrics()">Hazırla</button>
@@ -52,12 +66,12 @@
                 
         </div>
         <textarea id="lyrics-section" class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3" rows="15" readonly></textarea>
+        <div class="clear-bottom"></div>
     </div>
     <div class="col-12 text-center" id="loading-section">
         <div id="loader"></div>
         <span style="color: whitesmoke; font-size: large; margin-top: 10px; font-weight: bold;">Lütfen Bekleyin.<br> Sözlerin uzunluğuna göre besteleme süresi uzayabilir.</span>
     </div>
-    <div class="clear"></div>
     <div class="page-footer font-small fixed-bottom" id="footer-section">
         <div class="footer-copyright text-center py-3"> 
             <img src="static/images/robot.gif" height="75px" width="75px" />

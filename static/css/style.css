@@ -144,10 +144,16 @@ textarea
   color: #8b2f97;
 }
 
-.clear 
+.clear-top 
 { 
   clear: both;
-  height: 200px; 
+  height: 90px; 
+}
+
+.clear-bottom
+{
+  clear: both;
+  height: 200px;
 }
 
 .imageContainer{
@@ -156,8 +162,8 @@ textarea
   -webkit-filter: blur(10px);
   filter: blur(10px);
   opacity: 0.6;
-  z-index:0;
+  z-index: -1;
   position:absolute;
   background-position: center;
   background-size:cover
- }
+}
