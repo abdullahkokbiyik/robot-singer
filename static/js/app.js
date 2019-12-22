@@ -51,6 +51,7 @@ function quickGeneration()
 function showtext()
 {
     document.getElementById('mp3-player').innerHTML = "";
+    document.getElementById("lyrics-section").style.display = 'none';
     document.getElementById('txtarea').style.display = 'block';
 }
 

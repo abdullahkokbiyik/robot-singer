@@ -22,8 +22,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="header fixed-top">
-        <nav class="navbar navbar-expand-md navbar-light bg-light" id="header-section">
+    <div class="header">
+        <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top" id="header-section">
             <a href="#" class="navbar-brand col-12 offset-md-4 offset-lg-5">
                 <img src="static/images/robot.gif" height="75px" width="75px" />
                 <span style="font-size: large; color: white;"> ROBOT SINGER</span>
@@ -32,7 +32,6 @@
     </div>
     <div class="imageContainer"></div>
     <div class="container-fluid" id="body">
-        <div class="clear-top"></div>
         <div class="container-div row">
             <div class="col-12 col-md-6" id="quickGenDiv">
                 <button type="button" onclick="quickGeneration()" class="btn btn-outline-purple" id="quickGenerationButton">Hızlı Oluştur</button>
@@ -65,8 +64,7 @@
         <div id="mp3-player" class="col-12 offset-md-4 offset-lg-5">
                 
         </div>
-        <textarea id="lyrics-section" class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3" rows="15" readonly></textarea>
-        <div class="clear-bottom"></div>
+        <textarea id="lyrics-section" class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3" rows="10" readonly></textarea>
     </div>
     <div class="col-12 text-center" id="loading-section">
         <div id="loader"></div>
@@ -75,7 +73,7 @@
     <div class="page-footer font-small fixed-bottom" id="footer-section">
         <div class="footer-copyright text-center py-3"> 
             <img src="static/images/robot.gif" height="75px" width="75px" />
-            <span style="font-size: large; color: white;"> ROBOT SINGER</span> <span style="color: white;">otomatik olarak üretilen ya da kullanıcıdan alınan sözleri besteleyen bir müzik uygulamasıdır.</span>
+            <span style="font-size: large; color: white;"> ROBOT SINGER</span> 
         </div>
     </div>
 </body>
