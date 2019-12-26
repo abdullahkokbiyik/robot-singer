@@ -1,0 +1,13 @@
+X: 1
+T: from silent_night_easy.mid
+M: 3/4
+L: 1/8
+Q:1/4=70
+K:C % 0 sharps
+V:1
+%%MIDI program 0
+% Piano
+G2C2 G2C2| 
+w: ye-ter
+E2 C2| 
+w: ser-dar

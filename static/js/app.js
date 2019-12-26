@@ -18,10 +18,12 @@ function quickGeneration()
     document.getElementById('txt').value = "";
     document.getElementById('txtarea').style.display = 'none';
     document.getElementsByClassName("container-fluid")[0].style.filter = "blur(8px)";
+    document.getElementById('transpose-area').style.display = 'none';
+    document.getElementById('mp3-player').innerHTML = "";
     document.getElementById("loading-section").style.display = "block";
     $.ajax({
         type: "POST",
-        url: "http://0.0.0.0:5000/generate",
+        url: "http://3.231.61.200/generate",
         data: json,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -33,10 +35,10 @@ function quickGeneration()
                 'success'
             );
             document.getElementById("lyrics-section").style.display = 'block';
+            document.getElementById('transpose-area').style.display = 'block';
             document.getElementById("lyrics-section").value = "Sözler:\n" + response.lyrics;
             document.getElementsByClassName("container-fluid")[0].style.filter = "blur(0px)";
-            document.getElementById('mp3-player').innerHTML = "";
-            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/'+file_name+'.wav" type="audio/wav"></audio>';
+            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="../static/generation/'+file_name+'.wav" type="audio/wav"></audio><a class="btn btn-outline-purple" href="../static/generation/'+file_name+'.wav" download="robotsinger.wav" style="margin-top: -30px; margin-left: 5px;"><i class="fas fa-file-download"></i></a>';
         },
         error: function () {
             Swal.fire(
@@ -76,10 +78,11 @@ function generateWithLyrics()
     document.getElementById('txt').value = "";
     document.getElementById('txtarea').style.display = 'none';
     document.getElementsByClassName("container-fluid")[0].style.filter = "blur(8px)";
+    document.getElementById('transpose-area').style.display = 'none';
     document.getElementById("loading-section").style.display = "block";
     $.ajax({
         type: "POST",
-        url: "http://0.0.0.0:5000/generate",
+        url: "http://3.231.61.200/generate",
         data: json,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -91,9 +94,10 @@ function generateWithLyrics()
                 'success'
             );
             document.getElementById("lyrics-section").style.display = 'block';
+            document.getElementById('transpose-area').style.display = 'block';
             document.getElementById("lyrics-section").value = "Sözler:\n" + response.lyrics;
             document.getElementsByClassName("container-fluid")[0].style.filter = "blur(0px)";
-            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="static/generation/'+file_name+'.wav" type="audio/wav"></audio>';
+            document.getElementById('mp3-player').innerHTML = '<audio controls> <source src="../static/generation/'+file_name+'.wav" type="audio/wav"></audio><a class="btn btn-outline-purple" href="../static/generation/'+file_name+'.wav" download="robotsinger.wav" style="margin-top: -30px; margin-left: 5px;"><i class="fas fa-file-download"></i></a>';
         },
         error: function () {
             Swal.fire(

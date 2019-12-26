@@ -1,10 +1,11 @@
+
+#-- coding: utf-8 --
 import os
 from turkishnlp.detector import TurkishNLP as nlp
 import random
 from flask import Flask, render_template, request
 from flask_cors import CORS
 import json
-
 app = Flask(__name__)
 CORS(app)
 
@@ -16,10 +17,9 @@ def index():
 
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
-
-    os.system("rm -r static/generation/*")
+    # os.system("rm -r static/generation/*")
     data = request.get_data()
-    data = json.loads(data)
+    data = json.loads(data.decode('utf-8'))
     file_name = data['file_name']
     lyric = data['lyric']
     transpose = data['transpose']
@@ -35,11 +35,15 @@ def generate():
         poems = lyrics.read().split("<s>")
         # Select random poem
         poem = poems[random.randrange(0, len(poems))].lstrip("\n")
+        while len(poem.split('\n')) > 16:
+
+            poem = poems[random.randrange(0, len(poems))].lstrip('\n')
+
         lyrics.close()
     else:
         poem = lyric.lstrip("\n")
     # Write selected poem to file
-    selected_poem = open("static/generation/lyrics.txt", "w")
+    selected_poem = open("static/generation/lyrics_" + file_name + ".txt", "w")
     selected_poem.write(poem)
     selected_poem.close()
 
@@ -66,13 +70,13 @@ def generate():
                   "V:1\n")
 
     # Open file which included our selected poem
-    selected_poem = open("static/generation/lyrics.txt", "r")
+    selected_poem = open("static/generation/lyrics_" + file_name + ".txt", "r")
     line = selected_poem.readline()
 
     # Init model
     obj = nlp()
-    # obj.download()
-    obj.create_word_set()
+#    obj.download()
+#    obj.create_word_set()
 
     while line:
         line_stripped = line.rstrip("\n")
@@ -105,4 +109,5 @@ def generate():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    from waitress import serve
+    serve(app, host='localhost', port=8000)
