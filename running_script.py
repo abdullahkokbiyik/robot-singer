@@ -18,6 +18,12 @@ def index():
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
     # os.system("rm -r static/generation/*")
+    
+    # Init model
+    obj = nlp()
+#    obj.download()
+#    obj.create_word_set()
+
     data = request.get_data()
     data = json.loads(data.decode('utf-8'))
     file_name = data['file_name']
@@ -35,9 +41,20 @@ def generate():
         poems = lyrics.read().split("<s>")
         # Select random poem
         poem = poems[random.randrange(0, len(poems))].lstrip("\n")
-        while len(poem.split('\n')) > 16:
-
+        lines = poem.split('\n')
+        syl = 0
+        for line in lines:
+            line_strip = line.rstrip('\n')
+            syl += len(line_strip)
+        while syl > 129:
+            
             poem = poems[random.randrange(0, len(poems))].lstrip('\n')
+            lines = poem.split('\n')
+            syl = 0
+            for line in lines:
+                line_strip = line.rstrip('\n')
+                syl += len(line_strip)
+
 
         lyrics.close()
     else:
@@ -72,11 +89,6 @@ def generate():
     # Open file which included our selected poem
     selected_poem = open("static/generation/lyrics_" + file_name + ".txt", "r")
     line = selected_poem.readline()
-
-    # Init model
-    obj = nlp()
-#    obj.download()
-#    obj.create_word_set()
 
     while line:
         line_stripped = line.rstrip("\n")
