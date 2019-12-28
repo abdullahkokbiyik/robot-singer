@@ -24,6 +24,7 @@ function quickGeneration()
     $.ajax({
         type: "POST",
         url: "http://3.231.61.200/generate",
+        //url: "http://0.0.0.0:8000/generate",
         data: json,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -83,10 +84,23 @@ function generateWithLyrics()
     $.ajax({
         type: "POST",
         url: "http://3.231.61.200/generate",
+        //url: "http://0.0.0.0:8000/generate",
         data: json,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
+            if(response.status_code == '400')
+            {
+                Swal.fire(
+                    'Başarısız!',
+                    'Daha kısa sözlerle tekrar deneyin!',
+                    'error'
+                );
+                document.getElementById("loading-section").style.display = "none";
+                document.getElementById('transpose-area').style.display = 'block';
+                document.getElementsByClassName("container-fluid")[0].style.filter = "blur(0px)";
+                return;
+            }
             document.getElementById("loading-section").style.display = "none";
             Swal.fire(
                 'Başarılı!',
