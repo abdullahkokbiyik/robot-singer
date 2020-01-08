@@ -23,8 +23,8 @@ function quickGeneration()
     document.getElementById("loading-section").style.display = "block";
     $.ajax({
         type: "POST",
-        url: "http://3.231.61.200/generate",
-        //url: "http://0.0.0.0:8000/generate",
+        //url: "http://3.231.61.200/generate",
+        url: "http://0.0.0.0:8000/generate",
         data: json,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -83,8 +83,8 @@ function generateWithLyrics()
     document.getElementById("loading-section").style.display = "block";
     $.ajax({
         type: "POST",
-        url: "http://3.231.61.200/generate",
-        //url: "http://0.0.0.0:8000/generate",
+        //url: "http://3.231.61.200/generate",
+        url: "http://0.0.0.0:8000/generate",
         data: json,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
