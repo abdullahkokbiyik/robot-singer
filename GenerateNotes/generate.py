@@ -14,7 +14,7 @@ from keras.utils import np_utils
 from keras.callbacks import ModelCheckpoint
 
 SEQUENCE_LENGTH = 100
-GENERATED_NOTE_COUNT = 500
+GENERATED_NOTE_COUNT = 128
 
 def generate_notes_string(CREATED_FILE_NAME, OUTPUT_FOLDER):
 

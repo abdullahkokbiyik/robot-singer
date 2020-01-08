@@ -1,5 +1,6 @@
 #-- coding: utf-8 --
 import os
+import glob
 from turkishnlp.detector import TurkishNLP as nlp
 import random
 from flask import Flask, render_template, request
@@ -13,6 +14,7 @@ app = Flask(__name__)
 CORS(app)
 executor = Executor(app)
 FILE_SIZE = 100
+used_note_files = list()
 
 
 @app.route('/')
@@ -22,13 +24,32 @@ def index():
 
 def generate_notes(file_name):
     generate_notes_string(file_name, "example/notes/")
+    print("New note file generated!")
+
+def highest_freq(array):
+    print("Mostly used note is selecting...")
+    freq_dict = dict()
+    for file in array:
+        if file not in freq_dict.keys():
+            freq_dict[file] = 1
+        else:
+            freq_dict[file] += 1
+    print("Frequency dict constructed. Continue...")
+    mostly_used = array[0]
+    for key in freq_dict.keys():
+        if freq_dict[key] > freq_dict[mostly_used]:
+            mostly_used = key
+    print("Mostly used note file is {}!".format(mostly_used))
+    return mostly_used
 
 
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
     file_size = len([name for name in os.listdir('static/generation')])
     if file_size >= FILE_SIZE:
-        files = sorted(os.listdir('static/generation'), key=os.path.getctime)[:5]
+        files = [f for f in glob.glob("static/generation/*", recursive=True)]
+        files = sorted(files, key=os.path.getctime)
+        files = files[:5]
         for file in files:
             os.system("rm -rf static/generation/" + file)
 
@@ -42,7 +63,6 @@ def generate():
     file_name = data['file_name']
     lyric = data['lyric']
     transpose = data['transpose']
-    executor.submit(generate_notes, file_name)
     poem = ""
     if lyric == "None":
         # Random number for selecting a category for our poem
@@ -61,7 +81,7 @@ def generate():
             line_strip = line.rstrip('\n')
             line_strip = obj.syllabicate_sentence(line_strip)
             syl += sum(len(x) for x in line_strip)
-        while syl > 500:
+        while syl > 129:
             poem = poems[random.randrange(0, len(poems))].lstrip('\n')
             lines = poem.split('\n')
             syl = 0
@@ -78,7 +98,7 @@ def generate():
             line_strip = line.rstrip('\n')
             line_strip = obj.syllabicate_sentence(line_strip)
             syl += sum(len(x) for x in line_strip)
-        if syl > 500:
+        if syl > 129:
             return json.dumps({'status_code': '400'})
     # Write selected poem to file
     selected_poem = open("static/generation/lyrics_" + file_name + ".txt", "w")
@@ -86,12 +106,19 @@ def generate():
     selected_poem.close()
 
     # Read notes file. This file includes all possible notes (not exactly all btw). We will choose randomly between them
-    random_note = random.choice(os.listdir("example/notes/"))
-    notes = open("example/notes/" + random_note, "r")
+    random_ = [f for f in glob.glob("example/notes/*.txt", recursive=True)]
+    random_ = sorted(random_, key=os.path.getctime)
+    random_note = random.choice(random_)
+    used_note_files.append(random_note)
+    notes = open(random_note, "r")
     # Append notes to a list
-    notes_list = notes.read().rstrip("\n").split(" ")
+    notes_list = notes.read().split(" ")
     notes.close()
-    os.system("rm -rf example/notes/" + random_note)
+    if len(used_note_files) > FILE_SIZE/2:
+        notewbd = highest_freq(used_note_files)
+        os.system("rm -rf example/notes/" + notewbd)
+        used_note_files.clear()
+        executor.submit(generate_notes, file_name)
 
     # Conf file
     conf = open("static/generation/"+file_name+".conf", "w")
