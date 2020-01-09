@@ -15,6 +15,10 @@ CORS(app)
 executor = Executor(app)
 FILE_SIZE = 100
 used_note_files = list()
+BEG_SEQ = "<S>"
+END_SEQ = "</S>"
+UNK = "_UNK_"
+NEW_LINE = "_NEWLINE_"
 
 
 @app.route('/')
@@ -25,6 +29,11 @@ def index():
 def generate_notes(file_name):
     generate_notes_string(file_name, "example/notes/")
     print("New note file generated!")
+
+
+def generate_lyrics(file_name):
+    os.system("cd GenerateLyrics && python3 train.py " + file_name)
+
 
 def highest_freq(array):
     print("Mostly used note is selecting...")
@@ -45,6 +54,7 @@ def highest_freq(array):
 
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
+
     file_size = len([name for name in os.listdir('static/generation')])
     if file_size >= FILE_SIZE:
         files = [f for f in glob.glob("static/generation/*", recursive=True)]
@@ -66,30 +76,14 @@ def generate():
     poem = ""
     if lyric == "None":
         # Random number for selecting a category for our poem
-        input_name = random.randrange(1, 4)
-        category_file_name = "example/lyrics/category_" + str(input_name) + ".txt"
         # Open relevant category file
-        lyrics = open(category_file_name, "r")
-
+        generate_lyrics(file_name)
+        lyrics = open("example/lyrics/" + file_name + "_lyrics.txt", "r")
         # Pull all poems inside of category file
-        poems = lyrics.read().split("<s>")
         # Select random poem
-        poem = poems[random.randrange(0, len(poems))].lstrip("\n")
-        lines = poem.split('\n')
-        syl = 0
-        for line in lines:
-            line_strip = line.rstrip('\n')
-            line_strip = obj.syllabicate_sentence(line_strip)
-            syl += sum(len(x) for x in line_strip)
-        while syl > 129:
-            poem = poems[random.randrange(0, len(poems))].lstrip('\n')
-            lines = poem.split('\n')
-            syl = 0
-            for line in lines:
-                line_strip = line.rstrip('\n')
-                line_strip = obj.syllabicate_sentence(line_strip)
-                syl += sum(len(x) for x in line_strip)
+        poem = lyrics.read().lstrip("\n")
         lyrics.close()
+        os.system("rm -rf example/lyrics/" + file_name + "_lyrics.txt")
     else:
         poem = lyric.lstrip("\n")
         lines = poem.split('\n')
@@ -131,8 +125,8 @@ def generate():
     outfile = open("static/generation/"+file_name+".abc", "w")
     outfile.write("X:0\n"
                   "M:4/4\n"
-                  "L:1/4\n"
-                  "Q:120\n"
+                  "L:1/6\n"
+                  "Q:160\n"
                   "K:C\n"
                   "V:1\n")
 
