@@ -1,4 +1,4 @@
-
+// Generates random 32 bit string for temporary voice files.
 function randomName()
 {
     var anysize = 32;//the size of string 
@@ -9,6 +9,7 @@ function randomName()
     return ret;
 }
 
+// Send Ajax request to Python backend for quick generation
 function quickGeneration()
 {
     var file_name = randomName();
@@ -23,8 +24,7 @@ function quickGeneration()
     document.getElementById("loading-section").style.display = "block";
     $.ajax({
         type: "POST",
-        url: "http://3.231.61.200/generate",
-        //url: "http://0.0.0.0:8000/generate",
+        url: "http://0.0.0.0:8000/generate",
         data: json,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -51,6 +51,7 @@ function quickGeneration()
     });
 }
 
+// After selecting generate with my lyrics, this function is triggered and shows text are for lyrics. Also hides mp3 player and lyrics section which belongs to generated song.
 function showtext()
 {
     document.getElementById('mp3-player').innerHTML = "";
@@ -58,11 +59,13 @@ function showtext()
     document.getElementById('txtarea').style.display = 'block';
 }
 
+// Hides text area.
 function hideText()
 {
     document.getElementById('txtarea').style.display = 'none';
 }
 
+// Sends Ajax request to Python backend for generate with my lyrics.
 function generateWithLyrics()
 {
     if(document.getElementById("txt").value == "")
@@ -83,8 +86,7 @@ function generateWithLyrics()
     document.getElementById("loading-section").style.display = "block";
     $.ajax({
         type: "POST",
-        url: "http://3.231.61.200/generate",
-        //url: "http://0.0.0.0:8000/generate",
+        url: "http://0.0.0.0:8000/generate",
         data: json,
         contentType: "application/json; charset=utf-8",
         dataType: "json",

@@ -65,6 +65,7 @@ def generate():
 
     # Init model
     obj = nlp()
+    # If code runs first time, uncomment two codes below. Running one time is enough.
 #    obj.download()
 #    obj.create_word_set()
 
@@ -75,12 +76,9 @@ def generate():
     transpose = data['transpose']
     poem = ""
     if lyric == "None":
-        # Random number for selecting a category for our poem
-        # Open relevant category file
+        # Generate lyrics from model.
         generate_lyrics(file_name)
         lyrics = open("example/lyrics/" + file_name + "_lyrics.txt", "r")
-        # Pull all poems inside of category file
-        # Select random poem
         poem = lyrics.read().lstrip("\n")
         lyrics.close()
         os.system("rm -rf example/lyrics/" + file_name + "_lyrics.txt")
@@ -92,6 +90,7 @@ def generate():
             line_strip = line.rstrip('\n')
             line_strip = obj.syllabicate_sentence(line_strip)
             syl += sum(len(x) for x in line_strip)
+        # Syllabicate restriction.
         if syl > 129:
             return json.dumps({'status_code': '400'})
     # Write selected poem to file
@@ -108,6 +107,7 @@ def generate():
     # Append notes to a list
     notes_list = notes.read().split(" ")
     notes.close()
+    # If too many notes are used, remove mostly used and generate new one at different thread. 
     if len(used_note_files) > FILE_SIZE/2:
         notewbd = highest_freq(used_note_files)
         os.system("rm -rf example/notes/" + notewbd)
@@ -134,6 +134,7 @@ def generate():
     selected_poem = open("static/generation/lyrics_" + file_name + ".txt", "r")
     line = selected_poem.readline()
     note_index = 0
+    # Create .abc file
     while line:
         line_stripped = line.rstrip("\n")
         syllabicated = obj.syllabicate_sentence(line_stripped)
@@ -161,14 +162,14 @@ def generate():
 
     selected_poem.close()
     outfile.close()
+    # Terminal command for generation.
     os.system("cd ecantorix && make ../static/generation/"+file_name+".wav")
     response = {"status_code": "200", "lyrics": poem}
     return json.dumps(response)
 
 
 if __name__ == "__main__":
-    from waitress import serve
-    serve(app, host='localhost', port=8000)
-    # app.run(host="0.0.0.0", port=8000, threaded=True)
+
+    app.run(host="0.0.0.0", port=8000, threaded=True)
 
 
