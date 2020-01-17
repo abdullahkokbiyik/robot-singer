@@ -23,5 +23,5 @@ Python version is 3.6
 python3 running_script.py
 ```
 Type above command to terminal to run program.\
-You can find useful links at example/ornek siteler/kullanilan_siteler.txt\
+You can find useful links at example/ornek siteler/kullanilan_siteler.txt
 
